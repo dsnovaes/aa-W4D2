@@ -3,12 +3,12 @@ require_relative "board"
 class Piece
 
     attr_accessor :pos
-    attr_reader :color
+    attr_reader :color, :board
 
     def initialize(color, board, pos)
-        @color
-        @board
-        @pos
+        @color = color
+        @board = board
+        @pos = pos
     end
 
     def to_s
