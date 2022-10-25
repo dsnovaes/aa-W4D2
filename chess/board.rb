@@ -8,7 +8,7 @@ class Board
         @rows = empty.map.with_index do |row,i|
             row.each_with_index do |pos,j|
                 if i == 0 || i == 1 || i == 6 || i == 7
-                    empty[i][j] = Piece.new
+                    empty[i][j] = Piece.new(:white,self,[i,j])
                 end
             end
         end
@@ -33,8 +33,6 @@ class Board
         raise RuntimeRrror.new("declare position within the board") unless start_pos.first.between?(0,7) && start_pos.last.between?(0,7) && end_pos.first.between?(0,7) && end_pos.last.between?(0,7)
         self[end_pos] = self[start_pos]
         self[start_pos] = nil # if there is a piece at selected pos, delete it from the board
-
-
     end
 
 end
