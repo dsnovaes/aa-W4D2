@@ -5,31 +5,62 @@ module Slideable
 
     def diagonal_dirs
         resarr = []
-        diagonal1 = []
+        diagonal1 = [[0,0],[0,1]]
         diagonal2 = []
+        diagonal3 = []
+        diagonal4 = []
         my_col,my_row = @pos
 
-        i = my_col
+        i = 0
         while i < @board.rows.length
 
+            # down right
+            if i+my_row < 7 && i+my_col < 7 
+                ele = @board.rows[i+my_row+1][i+my_col+1]
+                diagonal1 << [i+my_row+1,i+my_col+1]
+            end
+
+            # up left
+            if -i-my_row-1 < 0 && -i-my_col-1 < 0
+                ele = @board.rows[-i-my_row-1][-i-my_col-1]
+                diagonal1 << [-i-my_row-1,-i-my_col-1]
+            end
+
+
+                # # up right
+                # ele2 = @board.rows[-i-1][i]
+                # diagonal2 << ele2
+
+                # # down left
+                # ele3 = @board.rows[i][-i-1]
+                # diagonal3 << ele3
+
+                # # up left
+                # ele4 = @board.rows[-i-1][-i-1]
+                # diagonal4 << ele4
+
+            i += 1
         end
+
+        p diagonal1
+        p diagonal2
+        # p diagonal3
+        # p diagonal4
 
 
         
-        @board.rows.each_with_index do |row,i|
-            row.each_with_index do |col, j|
-                # down right
+        # @board.rows.each_with_index do |row,i|
+        #     row.each_with_index do |col, j|
+        #         # down right
 
-                ele = @board.rows[my_row + i + 1][my_col + i + 1]
-                diagonal1 << ele unless ele.nil?
+        #         ele = @board.rows[my_row + i + 1][my_col + i + 1]
+        #         diagonal1 << ele unless ele.nil?
 
-                # up left
-                # ele2 = @board.rows[my_row - i - 1][my_col - i - 1]
-                # diagonal2 << ele2 unless ele2.nil?
-            end
-        end
-        p diagonal1
-        p diagonal2
+        #         # up left
+        #         # ele2 = @board.rows[my_row - i - 1][my_col - i - 1]
+        #         # diagonal2 << ele2 unless ele2.nil?
+        #     end
+        # end
 
     end
 
@@ -56,7 +87,7 @@ module Slideable
         end
 
         up.reverse_each do |pos|
-            if @board[pos].class == NullPiece# pos.class == NullPiece
+            if @board[pos].class == NullPiece # pos.class == NullPiece
                 resarr << pos
             elsif @board[pos].color == @color
                 break
@@ -67,7 +98,7 @@ module Slideable
         end
 
         down.each do |pos|
-            if @board[pos].class == NullPiece# pos.class == NullPiece
+            if @board[pos].class == NullPiece # pos.class == NullPiece
                 resarr << pos
             elsif @board[pos].color == @color
                 break
