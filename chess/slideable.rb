@@ -5,7 +5,7 @@ module Slideable
 
     def diagonal_dirs
         resarr = []
-        diagonal1 = [[0,0],[0,1]]
+        diagonal1 = []
         diagonal2 = []
         diagonal3 = []
         diagonal4 = []
@@ -13,56 +13,43 @@ module Slideable
 
         i = 0
         while i < @board.rows.length
-
-            # down right
-            if i+my_row < 7 && i+my_col < 7 
-                ele = @board.rows[i+my_row+1][i+my_col+1]
+     
+            if i+my_row < 7 && i+my_col < 7 # down right
                 diagonal1 << [i+my_row+1,i+my_col+1]
             end
 
-            # up left
-            if -i-my_row-1 < 0 && -i-my_col-1 < 0
-                ele = @board.rows[-i-my_row-1][-i-my_col-1]
-                diagonal1 << [-i-my_row-1,-i-my_col-1]
+            if my_row-i-1 >= 0 && my_col-i-1 >= 0 # up left
+                diagonal2 << [my_row-i-1,my_col-i-1]
             end
 
+            if my_row-i-1 >= 0 && i+my_col < 7 # up right
+                diagonal3 << [my_row-i-1,i+my_col+1]
+            end
 
-                # # up right
-                # ele2 = @board.rows[-i-1][i]
-                # diagonal2 << ele2
-
-                # # down left
-                # ele3 = @board.rows[i][-i-1]
-                # diagonal3 << ele3
-
-                # # up left
-                # ele4 = @board.rows[-i-1][-i-1]
-                # diagonal4 << ele4
-
+            if i+my_row < 7 && my_col-i-1 >= 0   # down left
+                diagonal4 << [i+my_row+1, my_col-i-1]
+            end
             i += 1
         end
 
-        p diagonal1
-        p diagonal2
-        # p diagonal3
-        # p diagonal4
+        temparr = [diagonal1,diagonal2,diagonal3,diagonal4]
 
+        temparr.each do |diag_arry|
+            diag_arry.each do |pos|
+                if @board[pos].class == NullPiece #
+                    resarr << pos
+                elsif @board[pos].color == @color
+                    break
+                else
+                    resarr << pos
+                    break
+                end
+            end
+        end
 
-        
-        # @board.rows.each_with_index do |row,i|
-        #     row.each_with_index do |col, j|
-        #         # down right
-
-        #         ele = @board.rows[my_row + i + 1][my_col + i + 1]
-        #         diagonal1 << ele unless ele.nil?
-
-        #         # up left
-        #         # ele2 = @board.rows[my_row - i - 1][my_col - i - 1]
-        #         # diagonal2 << ele2 unless ele2.nil?
-        #     end
-        # end
-
+        resarr
     end
+    
 
 
 

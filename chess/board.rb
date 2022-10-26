@@ -55,7 +55,9 @@ class Board
 
         if valid_pos?(start_pos) && valid_pos?(end_pos)
             self[end_pos] = self[start_pos]
-            self[start_pos] = nil # if there is a piece at selected pos, delete it from the board
+            @rows[end_pos.first][end_pos.last].pos = end_pos
+            self[start_pos] = NullPiece.instance # if there is a piece at selected pos, delete it from the board'
+
         else
             raise RuntimeRrror.new("That move is not valid") 
         end
