@@ -10,9 +10,3 @@ class Rook < Piece
     end
 
 end
-
-# g = Board.new
-
-# tower = Rook.new(:white,g,[0,5])
-
-# p tower.horizontal_dirs

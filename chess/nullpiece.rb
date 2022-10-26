@@ -1,10 +1,14 @@
 require_relative "piece"
+require "singleton"
 
 
 class NullPiece < Piece
+    include Singleton
+    attr_reader :color, :board
 
-    def initialize(color, board, pos)
-        super
+    def initialize
+        #(color, board)
+        # super
     end
 
     def moves

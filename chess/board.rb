@@ -5,6 +5,8 @@ class Board
 
     def initialize
         @rows = Array.new(8) {Array.new(8,nil)}
+        nullpiece = NullPiece.instance
+
         @rows[0] = 
         [Rook.new(:black, self, [0,0]),
         Knight.new(:black, self, [0,1]),
@@ -14,6 +16,13 @@ class Board
         Bishop.new(:black, self, [0,5]),
         Knight.new(:black, self, [0,6]),
         Rook.new(:black, self, [0,7])]
+
+        8.times do |i|
+            @rows[2][i] = nullpiece
+            @rows[3][i] = nullpiece
+            @rows[4][i] = nullpiece
+            @rows[5][i] = nullpiece
+        end
 
         8.times do |i|
             @rows[1][i] = Pawn.new(:black, self, [1,i]) 
@@ -59,6 +68,11 @@ class Board
 
 end
 
+# g = Board.new
+
+# tower = Rook.new(:white,g,[0,5])
+
+# p tower.diagonal_dirs
 
 #      # error when no piece at pos
 #      raise RuntimeRrror.new("no piece at selected position") if self[start_pos] == nil

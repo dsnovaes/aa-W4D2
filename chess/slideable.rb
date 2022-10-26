@@ -3,12 +3,35 @@ require_relative "piece"
 
 module Slideable
 
+    def diagonal_dirs
+        resarr = []
+        diagonal1 = []
+        diagonal2 = []
+        my_col,my_row = @pos
+
+        i = my_col
+        while i < @board.rows.length
+
+        end
 
 
-    # this is checking for nil and it needs to check for nullpiece, come back and fix it
+        
+        @board.rows.each_with_index do |row,i|
+            row.each_with_index do |col, j|
+                # down right
 
+                ele = @board.rows[my_row + i + 1][my_col + i + 1]
+                diagonal1 << ele unless ele.nil?
 
+                # up left
+                # ele2 = @board.rows[my_row - i - 1][my_col - i - 1]
+                # diagonal2 << ele2 unless ele2.nil?
+            end
+        end
+        p diagonal1
+        p diagonal2
 
+    end
 
 
 
@@ -33,29 +56,22 @@ module Slideable
         end
 
         up.reverse_each do |pos|
-            # p pos
-            if @board[pos] == nil # pos.class == NullPiece
-                p "if is nil"
+            if @board[pos].class == NullPiece# pos.class == NullPiece
                 resarr << pos
             elsif @board[pos].color == @color
-                p "if color is same"
                 break
             else
-                p "else"
                 resarr << pos
                 break
             end
         end
 
         down.each do |pos|
-            if @board[pos] == nil # pos.class == NullPiece
-                p "if is nil"
+            if @board[pos].class == NullPiece# pos.class == NullPiece
                 resarr << pos
             elsif @board[pos].color == @color
-                p "if color is same"
                 break
             else
-                p "else"
                 resarr << pos
                 break
             end
@@ -79,7 +95,7 @@ module Slideable
         end
 
         left.reverse_each do |pos|
-            if @board[pos] == nil # pos.class == NullPiece
+            if @board[pos].class == NullPiece # pos.class == NullPiece
                 resarr << pos
             elsif @board[pos].color == @color
                 break
@@ -90,7 +106,7 @@ module Slideable
         end
 
         right.each do |pos|
-            if @board[pos] == nil # pos.class == NullPiece
+            if @board[pos].class == NullPiece # pos.class == NullPiece
                 resarr << pos
             elsif @board[pos].color == @color
                 break
