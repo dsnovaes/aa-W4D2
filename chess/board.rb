@@ -1,4 +1,4 @@
-Dir["*.rb"].each {|file| require_relative file }
+require_relative "requirements"
 
 class Board
     attr_accessor :rows 
