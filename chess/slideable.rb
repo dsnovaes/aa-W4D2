@@ -50,10 +50,6 @@ module Slideable
         resarr
     end
     
-
-
-
-
     def horizontal_dirs
         up_to_down + left_to_right
     end
@@ -139,18 +135,3 @@ module Slideable
     end
 end
 
-
-# [0..starting]
-
-# [starting..-1]
-
-
-
-
-# [:black,:white,:white,nil,nil,:white]
-
-# [[0,1],[0,3],[0,4]]
-
-
-# possible moves
-# 
