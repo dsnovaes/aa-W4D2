@@ -1,4 +1,5 @@
 require_relative "board"
+require_relative "cursor"
 require 'colorize'
 
 class Display
@@ -7,10 +8,11 @@ class Display
 
     def initialize
         @board = Board.new
-        @cursor
+        @cursor = Cursor.new([0,0],@board )
     end
 
     def render
+        system("clear")
         @board.rows.each do |row|
             puts "  "
             puts "---------------------------------"
