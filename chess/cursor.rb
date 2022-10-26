@@ -12,15 +12,9 @@ class Cursor
         @selected = false
     end
 
-    def get_input
-
-    end
-
     def toggle_selected
 
     end
-
-    private
 
     KEYMAP = {
         " " => :space,
@@ -46,6 +40,13 @@ class Cursor
         up: [-1, 0],
         down: [1, 0]
     }
+
+
+    def get_input
+        key = KEYMAP[read_char]
+        handle_key(key)
+    end
+
     def handle_key(key)
         case key
         when :ctrl_c
@@ -59,9 +60,6 @@ class Cursor
         else
           puts key
         end
-
-        # read key
-        # call update_pos w/ result from key - down -> [-1,0]
 
     end
 
@@ -79,7 +77,6 @@ class Cursor
         STDIN.cooked!
     
         return input
-
     end
 
 

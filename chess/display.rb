@@ -5,10 +5,10 @@ require "colorize"
 class Display
 
 
-    attr_reader :board
+    attr_reader :board, :cursor
 
-    def initialize
-        @board = Board.new
+    def initialize(board)
+        @board = board
         @cursor = Cursor.new([0,0],@board )
     end
 
