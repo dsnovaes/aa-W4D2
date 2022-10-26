@@ -1,13 +1,15 @@
 require_relative "board"
 require_relative "piece"
-require_relative "slideable"
 
-class Queen < Piece
-
-    include Slideable
+class Knight < Piece
 
     def initialize(color, board, pos)
         super
+    end
+
+    private
+    def move_diffs
+
     end
 
 end

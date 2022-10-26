@@ -1,13 +1,15 @@
 require_relative "board"
 require_relative "piece"
-require_relative "slideable"
 
-class Queen < Piece
 
-    include Slideable
+class NullPiece < Piece
 
     def initialize(color, board, pos)
         super
+    end
+
+    def moves
+        #in UML diagram -- what does this do?
     end
 
 end

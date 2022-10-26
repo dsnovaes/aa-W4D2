@@ -1,6 +1,9 @@
+require_relative "board"
+require_relative "piece"
+
 module Slideable
     def horizontal_dirs
-        resarr = []
+
         left = []
         right = []
         my_row,my_col = @pos
@@ -13,7 +16,11 @@ module Slideable
             end
 
         end
-        resarr + left + right
+
+                    # right.each -> [3,4] -> if nil, add to resar, if :white, stop loop, if :black, add to resar and stop loop
+        # :white piece -> [right]
+
+        left + right
 
         # vertical / tranpose
 
