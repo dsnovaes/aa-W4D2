@@ -66,20 +66,20 @@ class Cursor
     end
 
     def read_char
-    #     STDIN.echo = false
-    #     STDIN.raw!
+        STDIN.echo = false
+        STDIN.raw!
     
-    #     input = STDIN.getc.chr
-    #     if input == "\e" then
-    #       input << STDIN.read_nonblock(3) rescue nil
-    #       input << STDIN.read_nonblock(2) rescue nil
-    #     end
-    #   ensure
-    #     STDIN.echo = true
-    #     STDIN.cooked!
+        input = STDIN.getc.chr
+        if input == "\e" then
+          input << STDIN.read_nonblock(3) rescue nil
+          input << STDIN.read_nonblock(2) rescue nil
+        end
+      ensure
+        STDIN.echo = true
+        STDIN.cooked!
     
-    #     return input
-    #   end
+        return input
+
     end
 
 
@@ -90,6 +90,6 @@ class Cursor
 
     def in_bounds?(pos)
         pos.all? { |x| x.between?(0, 7) }
-      end
+    end
 
 end
