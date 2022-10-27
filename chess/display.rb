@@ -32,7 +32,12 @@ class Display
             row.each_with_index do |piece,j|
 
                 if [i,j] == @cursor.cursor_pos
-                    print " #{piece_symbols[piece.class]} ".white.on_red.blink
+                    if @cursor.selected
+                        print " #{piece_symbols[piece.class]} ".white.on_blue.blink
+                    else
+                        print " #{piece_symbols[piece.class]} ".white.on_red.blink
+                    end
+                    
                 else
                     case piece
                         when Pawn

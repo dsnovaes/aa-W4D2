@@ -2,18 +2,22 @@ require_relative "board"
 require "io/console"
 
 class Cursor
-    attr_reader :cursor_pos
-    attr_accessor :selected
-
+    attr_reader :cursor_pos, :selected
+    attr_accessor :movearr
 
     def initialize(cursor_pos, board)
         @cursor_pos = cursor_pos
         @board = board
         @selected = false
+        @movearr = []
     end
 
-    def toggle_selected
-
+    def move_execute(pos)
+        @movearr << pos
+        if movearr.length == 2
+            @board.move_piece(movearr[0],movearr[1])
+            @movearr = []
+        end
     end
 
     KEYMAP = {
@@ -52,8 +56,9 @@ class Cursor
         when :ctrl_c
           exit 0
         when :return, :space
-          # this selects the piece to move
-          # AND it's end pos
+            @selected = @selected == false ? true : false
+            move_execute(cursor_pos)
+            nil
         when :left, :right, :up, :down
           update_pos(MOVES[key])
           nil
